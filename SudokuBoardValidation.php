@@ -8,13 +8,11 @@
     
     for ($i = 0; $i < 9; $i++)
     {
-      for ($j = 0; $j < 9; $j++)
+      for ($j = 0; $j <= 9; $j++)
       {
-        $slice = $sudoku[$i][$j];
-        
-        if(strcmp($slice,"9") == 0)
+        if(strcmp($sudoku[$i][$j],$sudoku[$i][$j+1]) == 0)
         {
-          $flag = 1;
+          $flag = 1; // No Valid
           
           break;
         }
@@ -35,13 +33,13 @@
     
     while($col < 9)
     {
-      for($i = 0; $i < 9 ; $i++)
+      for($i = 0; $i <= 9 ; $i++)
       {
         $slice = $sudoku[$i][$col];
         
-        if(strcmp($slice,"9") == 0)
+        if(strcmp($sudoku[$i][$col],$sudoku[$i+1][$col]) == 0)
         {
-          $flag = 1;
+          $flag = 1; // No Valid
           
           break;
         }
@@ -65,9 +63,9 @@
      
     while ($box <= 9)
     {
-    	$mask = [0,0,0,1,0,2,
-                 1,0,1,1,1,2,
-                 2,0,2,1,2,2 ];           
+    	 $mask = [0,0,0,1,0,2,
+                  1,0,1,1,1,2,
+                  2,0,2,1,2,2 ];           
     	$k = 0;
     		
     	while($k < 18)
@@ -75,9 +73,9 @@
           $r = $mask[$k];
           $c = $mask[$k+1];
           
-          if(strcmp($sudoku[$r][$c],"9") == 0)
+          if(strcmp($sudoku[$r][$c],$sudoku[$r][$c+1]) == 0)
           {
-             $flag = 1;
+             $flag = 1; // No Valid
              break;
           }
           else
@@ -118,7 +116,6 @@
   $boxe = validateBox($board);
   echo "the Sudoku Box validation is:".$boxe;
   echo "\n";
-  
   
 	
 ?>
