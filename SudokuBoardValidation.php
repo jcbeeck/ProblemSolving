@@ -34,9 +34,7 @@
     while($col < 9)
     {
       for($i = 0; $i <= 9 ; $i++)
-      {
-        $slice = $sudoku[$i][$col];
-        
+      { 
         if(strcmp($sudoku[$i][$col],$sudoku[$i+1][$col]) == 0)
         {
           $flag = 1; // No Valid
