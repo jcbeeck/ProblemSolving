@@ -8,14 +8,20 @@
     
     for ($i = 0; $i < 9; $i++)
     {
-      for ($j = 0; $j <= 9; $j++)
+      for ($j = 0; $j < 9; $j++)
       {
-        if(strcmp($sudoku[$i][$j],$sudoku[$i][$j+1]) == 0)
+        $item = $sudoku[$i][$j];
+        
+        for ($pos = 1 ; $pos < $j ; $pos++)
         {
-          $flag = 1; // No Valid
-          
-          break;
-        }
+          if(strcmp($item,$sudoku[$i][$pos]) == 0)
+           {
+             $flag = 1; // No Valid
+            
+             break;
+           }
+        }//for
+       
       }//inner-for
 
     }//end For
@@ -25,6 +31,7 @@
 	  
   }//end f()
   
+  //Reviewing this function
   function validateCol($sudoku)
   {
     $flag = 0;
@@ -50,7 +57,8 @@
 	  return $flag;
 
 }//end validateCol
-
+  
+  //Reviewing this function
   function validateBox($sudoku)
   {
     $mask = array();
