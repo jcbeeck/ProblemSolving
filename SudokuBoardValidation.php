@@ -2,9 +2,9 @@
 
 // Determine If a Sudoku Board Is Valid 
 
-  function validateRow($sudoku)
+ function validateRow($sudoku)
   {
-    $flag = 0;
+    $validation = 1;
     
     for ($i = 0; $i < 9; $i++)
     {
@@ -12,81 +12,86 @@
       {
         $item = $sudoku[$i][$j];
         
-        for ($pos = 1 ; $pos < $j ; $pos++)
+        for ($pos = 1 ; $pos < 9 ; $pos++ )
         {
           if(strcmp($item,$sudoku[$i][$pos]) == 0)
            {
-             $flag = 1; // No Valid
+             $validation = 0; // No Valid
             
              break;
            }
         }//for
-       
+        
+        
       }//inner-for
 
     }//end For
   
-    //echo "the flag is:";
-	  return $flag;
+    //echo "validation:";
+	  return $validation;
 	  
   }//end f()
   
-  //Reviewing this function
   function validateCol($sudoku)
   {
-    $flag = 0;
+    $validation = 1;
     
     $col = 0;
     
     while($col < 9)
     {
-      for($i = 0; $i <= 9 ; $i++)
-      { 
-        if(strcmp($sudoku[$i][$col],$sudoku[$i+1][$col]) == 0)
+      for($i = 0; $i < 9 ; $i++)
+      {
+        $item = $sudoku[$i][$col];
+        
+        for ($pos = 1 ; $pos < 9 ; $pos++ )
         {
-          $flag = 1; // No Valid
-          
-          break;
-        }
+          if(strcmp($item,$sudoku[$i][$pos]) == 0)
+           {
+             $validation = 0; // No Valid
+            
+             break;
+           }
+        }//for
         
       }//inner-for
       
       $col++;
       
     }// end-while
-	  return $flag;
+	  return $validation;
 
 }//end validateCol
-  
-  //Reviewing this function
+
   function validateBox($sudoku)
   {
     $mask = array();
     
-    $flag = 0;
+    $validation = 1;
 
     $box = 1;
+    
+    $mask = [0,0,0,1,0,2,
+             1,0,1,1,1,2,
+             2,0,2,1,2,2 ];   
      
     while ($box <= 9)
     {
-    	 $mask = [0,0,0,1,0,2,
-                  1,0,1,1,1,2,
-                  2,0,2,1,2,2 ];           
-    	$k = 0;
+     $i = 0;
     		
-    	while($k < 18)
+    	while($i < 18)
     	{
-          $r = $mask[$k];
-          $c = $mask[$k+1];
+          $r = $mask[$i];
+          $c = $mask[$i+1];
           
-          if(strcmp($sudoku[$r][$c],$sudoku[$r][$c+1]) == 0)
+          if(strcmp($sudoku[$r][$c],$sudoku[$r+1][$c+1]) == 0)
           {
-             $flag = 1; // No Valid
+             $validation = 0; // No Valid
              break;
           }
           else
           {
-            $k++;
+            $i++;
           }      
     	}//end inner-while	
     	
@@ -94,7 +99,7 @@
     	
     }//end while boxes
     
-    return $flag;
+    return $validation;
   }//end validateBox
   
 	
@@ -119,9 +124,8 @@
   //echo "the Sudoku col validation is:".$col;
   //echo "\n";
   
-  $boxe = validateBox($board);
-  echo "the Sudoku Box validation is:".$boxe;
+  $boxes = validateBox($board);
+  echo "the Sudoku Box validation is:".$boxes;
   echo "\n";
-  
 	
 ?>
