@@ -1,5 +1,6 @@
 <?php
 
+//Determine If a Sudoku Board Is Valid | Problem Solving with Turing | Episode 7
 // Determine If a Sudoku Board Is Valid 
 
  function validateRow($sudoku)
