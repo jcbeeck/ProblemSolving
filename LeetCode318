@@ -1,10 +1,9 @@
+<?php
 //318. Maximum Product of Word Lengths
 //https://leetcode.com/problems/maximum-product-of-word-lengths/
 
 //Explanation video
 //https://youtu.be/NfUbXMXYMM8
-
-<?php
 
     class Solution {
 
