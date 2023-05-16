@@ -1,0 +1,92 @@
+//318. Maximum Product of Word Lengths
+//https://leetcode.com/problems/maximum-product-of-word-lengths/
+
+//Explanation video
+//https://youtu.be/NfUbXMXYMM8
+
+<?php
+
+    class Solution {
+
+        /**
+         * @param String[] $words
+         * @return Integer
+         */
+        function maxProduct($words) 
+        {
+            $stack = array();
+
+            $stack2 = array();
+
+            for($i=0; $i < count($words)-1; $i++)
+            {
+                $shared = implode('', array_intersect(str_split($words[$i]), str_split($words[$i+1])));
+                array_push($stack, $shared);
+            }
+
+            //print_r($stack);
+    
+        $cont = count($stack)-1;
+
+        for($j=0; $j < count($stack)-1; $j++)
+        {
+            $shared2 = implode('', array_intersect(str_split($stack[$j]), str_split($stack[$cont])));
+            //Reverse thinking approach
+            $shared3 = implode('', array_intersect(str_split($stack[$j+1]), str_split($stack[$cont-1])));
+
+             //external: initial and final pointers
+            if($shared2 == null)
+            {
+                $a = strlen($stack[$j]);
+                $b = strlen($stack[$cont]);
+                $res = $a * $b;
+                
+                array_push($stack2, $res);
+
+            }
+
+            //internal: initial and final pointers
+            if($shared3 == null)
+            {
+                $a = strlen($words[$j+1]);
+                $b = strlen($words[$cont-1]);
+                $res = $a * $b;
+        
+                array_push($stack2, $res);
+
+            }
+            
+            $cont--;
+        
+        }//end for
+
+        //print_r($stack2);
+
+        if(empty($stack2))
+        {
+            $ans = 0;
+        }
+        else{
+            $ans = max($stack2);
+        }
+
+        echo $ans;
+
+    }//end function
+ }//end class
+
+    $input = ["a","aa","aaa","aaaa"];
+    
+    //["abcw","baz","foo","bar","xtfn","abcdef"];
+    //16
+    
+    //["a","ab","abc","d","cd","bcd","abcd"];
+    //4
+
+    //["a","aa","aaa","aaaa"];
+    //0
+
+    $sol = new Solution();
+    $sol->maxProduct($input);
+
+?>
