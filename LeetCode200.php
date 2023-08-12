@@ -1,5 +1,8 @@
 <?php
 
+    //200. Number of Islands
+    //https://leetcode.com/problems/number-of-islands/
+
     class Solution {
 
         /**
@@ -43,13 +46,13 @@
                 {
                     if ($this->y == 6){break;}
 
-                    //criteria 1
+                    //criterion 1
                     if($mirror[$x+1][$this->y-1] == 1)
                     {
                         $island = $island + 1;
                     }
                     
-                    //criteria 2
+                    //criterion 2
                     if($mirror[$x][$this->y] == 1)
                     {
                         $island = $island + 1;
